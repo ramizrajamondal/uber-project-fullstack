@@ -1,50 +1,25 @@
+## Endpoint: `/users/register`
+
+### Method: POST
+
+### Description:
+This endpoint is used to register a new user. It accepts user details, hashes the password, creates a new user in the database, and returns an authentication token along with the user details.
+
+### Request Body:
+The request body should be a JSON object containing the following fields:
+- `fullName`: An object containing:
+  - `firstName`: The first name of the user (required, trimed minimum 3 characters and it's string type).
+  - `lastName`: The last name of the user (optional it's also a string).
+- `email`: The email address of the user (required).
+- `password`: The password for the user account (required).
+
+### Example Request:
+```json
 {
-  "endpoint": "POST /users/register",
-  "requestBody": {
-    "fullName": {
-      "firstName": "string", 
-      "lastName": "string" 
-    },
-    "email": "string",
-    "password": "string"
+  "fullName": {
+    "firstName": "John",
+    "lastName": "Doe"
   },
-  "validationAndSecurity": {
-    "validation": {
-      "firstName": "Required, trimmed, non-empty string",
-      "lastName": "Required, trimmed, non-empty string",
-      "email": "Required, valid email format, unique",
-      "password": "Must meet security criteria"
-    },
-    "security": {
-      "jwtAuthentication": "JWT is used for authentication and authorization",
-      "passwordEncryption": "Password is hashed using bcrypt before storing"
-    }
-  },
-  "responses": {
-    "success": {
-      "status": 201,
-      "body": {
-        { user, token }
-        "user": {
-          "id": "unique_user_id",
-          "fullName": {
-            "firstName": "string",
-            "lastName": "string"
-          },
-          "email": "string"
-        }
-      }
-    },
-    "errors": {
-      "badRequest": {
-        "status": 500,
-        "body": { "error": "error.message" 
-        }
-      },
-    }
-  },
-  "notes": [
-    "bcrypt is properly implemented for password hashing",
-    "JWT has used for tokengeneration",
-  ]
+  "email": "john.doe@example.com",
+  "password": "password123"
 }

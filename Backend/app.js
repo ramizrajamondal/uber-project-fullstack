@@ -17,4 +17,8 @@ app.get("/",function(req,res) {
 const userRouter = require("./routes/userRoute.js")
 app.use("/users",userRouter)
 
+// captain Route config
+const captainRoute = require("./routes/captainRoute.js");
+app.use("/captain",captainRoute);
+
 module.exports = app
